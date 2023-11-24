@@ -1,0 +1,51 @@
+$white: #fff;
+$grey: #7e7e82;
+$black: #1b1c21;
+$pink: #ff3e79;
+$blue-border: #b8ffec;
+$blue-pointer: #41f6d7;
+$blue-strip: #d9fff5;
+$grey-border: #eaeaea;
+
+$background: #f8f8f8;
+$gradient: linear-gradient(270deg, #f8f8f8 0%, #fff 98.61%);
+
+%h1 {
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.6px;
+}
+
+%h2 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.6px;
+}
+
+%h3 {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  text-transform: uppercase;
+}
+
+%title {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+%text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+}
