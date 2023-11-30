@@ -58,7 +58,7 @@ const plugins = () => {
 module.exports = {
   mode: "development",
   context: path.resolve(__dirname, "src"),
-  entry: ["./js/main.js", "./scss/main.scss"],
+  entry: "./js/main.js",
   output: {
     filename: `./js/${filename("js")}`,
     path: path.resolve(__dirname, "app"),
@@ -80,6 +80,10 @@ module.exports = {
       {
         test: /\.html$/,
         loader: "html-loader",
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.s[ac]ss$/i,

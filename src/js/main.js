@@ -1,3 +1,10 @@
+import "../scss/main.scss";
+import Swiper from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/scss";
+import "swiper/scss/navigation";
+import "swiper/scss/pagination";
+
 const closeMenu = document.getElementById("close");
 const openMenu = document.getElementById("open");
 const nav = document.querySelector(".navigation");
@@ -72,6 +79,7 @@ closeCallRequest.addEventListener("click", function () {
 });
 
 const swiper = new Swiper(".swiper", {
+  modules: [Navigation, Pagination],
   direction: "horizontal",
   width: 320,
   loop: false,
