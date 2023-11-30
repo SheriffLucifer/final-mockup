@@ -1,0 +1,120 @@
+@import "variables";
+@import "mixins/mixins";
+
+.feedback {
+  background-color: $white;
+  width: 320px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-shadow: $box-shadow;
+  z-index: 3;
+  @include desktop {
+    width: 440px;
+  }
+
+  &__header {
+    margin: 24px 0 0 16px;
+    @include desktop {
+      margin-left: 32px;
+    }
+
+    &-image {
+      cursor: pointer;
+      @include desktop {
+        position: absolute;
+        top: 37px;
+        left: -75px;
+      }
+    }
+
+    &-title {
+      @extend %h2;
+      margin-top: 40px;
+
+      &::before {
+        content: "";
+        background-image: url("../assets/highlight.svg");
+        background-repeat: no-repeat;
+        padding: 4px;
+        margin-left: -16px;
+        margin-right: 8px;
+        top: 0;
+        @include desktop {
+          margin-left: -32px;
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+
+  &__form {
+    margin: 24px 16px 0 16px;
+    @include desktop {
+      margin-left: 32px;
+    }
+
+    &-input {
+      color: #b5b6bc;
+      @extend %title;
+      width: 270px;
+      border-radius: 8px;
+      border: 1px solid $grey-border;
+      background: $white;
+      padding: 12px 0 12px 16px;
+      margin-bottom: 16px;
+      outline: none;
+      @include desktop {
+        width: 360px;
+      }
+    }
+
+    &-warning {
+      color: $grey;
+      @extend %title-text;
+      @include desktop {
+        width: 376px;
+      }
+
+      &-pink {
+        color: $pink;
+      }
+    }
+
+    &-button {
+      width: 136px;
+      position: absolute;
+      right: 0;
+      color: $white;
+      @extend %text-btn;
+      background-color: $pink;
+      border-radius: 16px;
+      padding: 4px 12px;
+      margin-right: 16px;
+      margin-top: 20px;
+      border: none;
+      display: flex;
+      align-items: center;
+      text-align: right;
+      cursor: pointer;
+      @include desktop {
+        margin-right: 32px;
+      }
+
+      &-img {
+        position: relative;
+        bottom: 1px;
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.feedback--hidden {
+  display: none;
+}
+
+.feedback--show {
+  display: block;
+}

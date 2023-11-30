@@ -1,0 +1,211 @@
+@import "variables";
+@import "mixins/mixins";
+
+.content__menu a {
+  display: none;
+  @include desktop {
+    display: block;
+  }
+}
+
+.content__menu {
+  display: flex;
+  align-items: end;
+
+  &-title {
+    @extend %h1;
+    margin: 24px 0 24px;
+    @include laptop {
+      margin: 42px auto 0 0;
+    }
+
+    &::before {
+      content: "";
+      border: 8px solid $blue-pointer;
+      border-radius: 25%;
+      margin-left: -10px;
+      margin-right: 12px;
+      height: 40px;
+      @include iPad {
+        margin-right: 20px;
+      }
+      @include laptop {
+        margin-right: 30px;
+      }
+    }
+  }
+
+  &-info {
+    display: flex;
+
+    &__link {
+      text-decoration: none;
+      align-self: center;
+      color: $black;
+      @extend %title;
+      margin-right: 8px;
+    }
+
+    &__link ~ a {
+      margin-right: 24px;
+    }
+  }
+}
+
+.nav {
+  margin-left: 16px;
+  display: flex;
+  white-space: nowrap;
+  overflow-x: scroll;
+  width: auto;
+  @include iPad {
+    margin-left: 24px;
+  }
+  @include laptop {
+    margin-left: 34px;
+    margin-top: 24px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &__link {
+    margin-bottom: 10px;
+
+    &-text {
+      text-decoration: none;
+      @extend %title;
+      color: $grey;
+      padding: 8px 16px;
+      @include laptop {
+        padding: 8px 24px;
+      }
+
+      &:focus {
+        border: 2px solid $blue-border;
+        border-radius: 6px;
+        background-color: $white;
+        padding: 8px 14px;
+        @include laptop {
+          padding: 8px 22px;
+        }
+      }
+    }
+
+    &-text__active {
+      border: 2px solid $blue-border;
+      border-radius: 6px;
+      background-color: $white;
+      padding: 8px 14px;
+      @include laptop {
+        padding: 8px 22px;
+      }
+    }
+  }
+}
+
+.nav__link:not(:last-child) {
+  margin-right: 9px;
+}
+
+.content__review {
+  color: $grey;
+  @extend %title;
+  margin: 0 0 20px 56px;
+  display: none;
+  @include laptop {
+    display: block;
+  }
+}
+
+.promo {
+  display: flex;
+  @include mobile {
+    flex-wrap: wrap;
+  }
+
+  &__description {
+    margin: 0 16px;
+    @include iPad {
+      margin: 0 24px;
+      width: 312px;
+    }
+    @include laptop {
+      margin: 0 8px 0 34px;
+      min-width: 490px;
+    }
+
+    &-text,
+    &-text-md,
+    &-text-lg {
+      @extend %text;
+      margin: 0;
+    }
+
+    &-text {
+      margin: 0 0 16px 0;
+    }
+
+    &-text-md {
+      display: none;
+      @include iPad {
+        display: inline;
+      }
+    }
+
+    &-text-lg {
+      display: none;
+      @include laptop {
+        display: inline;
+      }
+    }
+
+    &-button {
+      @extend %title;
+      border: none;
+      background-color: inherit;
+      margin-bottom: 16px;
+      display: block;
+      cursor: pointer;
+      @include iPad {
+        margin-top: 10px;
+      }
+      @include laptop {
+        margin-top: 14px;
+      }
+
+      &::before {
+        content: "";
+        background-image: url(../assets/expand.svg);
+        padding-left: 30px;
+        background-position-y: -1px;
+      }
+    }
+  }
+
+  &__picture {
+    width: 100%;
+    @include iPad {
+      width: 46%;
+      border-radius: 8px;
+      margin-right: 24px;
+      margin-left: 24px;
+      flex-grow: 2;
+    }
+    @include laptop {
+      max-width: 50%;
+      margin-right: 28px;
+      margin-left: auto;
+    }
+    @include desktop {
+      width: 45%;
+      flex-grow: 0;
+    }
+  }
+}
+
+.blur {
+  transition: all 0.2s ease-in-out;
+  opacity: 0.1;
+}

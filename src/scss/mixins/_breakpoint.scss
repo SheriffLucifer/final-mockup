@@ -4,6 +4,12 @@
   }
 }
 
+@mixin laptop {
+  @media (min-width: (1120px)) {
+    @content;
+  }
+}
+
 @mixin iPad {
   @media (min-width: 768px) {
     @content;

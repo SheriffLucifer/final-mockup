@@ -1,11 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const { extendDefaultPlugins } = require("svgo");
 
 const json = require("./package.json");
 const project_name = json.name;
@@ -14,52 +13,20 @@ const isProd = !isDev;
 
 const filename = (ext) =>
   isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`;
+
 const optimization = () => {
-  const configObj = {
+  const config = {
     splitChunks: {
       chunks: "all",
     },
   };
-
   if (isProd) {
-    configObj.minimizer = [
+    config.minimizer = [
       new CssMinimizerWebpackPlugin(),
       new TerserWebpackPlugin(),
-      new ImageMinimizerPlugin({
-        minimizer: {
-          implementation: ImageMinimizerPlugin.imageminMinify,
-          options: {
-            // Lossless optimization with custom option
-            // Feel free to experiment with options for better result for you
-            plugins: [
-              ["gifsicle", { interlaced: true }],
-              ["jpegtran", { progressive: true }],
-              ["optipng", { optimizationLevel: 5 }],
-              // Svgo configuration here https://github.com/svg/svgo#configuration
-              [
-                "svgo",
-                {
-                  plugins: extendDefaultPlugins([
-                    {
-                      name: "removeViewBox",
-                      active: false,
-                    },
-                    {
-                      name: "addAttributesToSVGElement",
-                      params: {
-                        attributes: [{ xmlns: "http://www.w3.org/2000/svg" }],
-                      },
-                    },
-                  ]),
-                },
-              ],
-            ],
-          },
-        },
-      }),
     ];
   }
-  return configObj;
+  return config;
 };
 
 const plugins = () => {
@@ -72,8 +39,9 @@ const plugins = () => {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: `./css/${filename("css")}`,
+      filename: `./scss/${filename("css")}`,
     }),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -90,7 +58,7 @@ const plugins = () => {
 module.exports = {
   mode: "development",
   context: path.resolve(__dirname, "src"),
-  entry: "./js/main.js",
+  entry: ["./js/main.js", "./scss/main.scss"],
   output: {
     filename: `./js/${filename("js")}`,
     path: path.resolve(__dirname, "app"),
@@ -114,16 +82,7 @@ module.exports = {
         loader: "html-loader",
       },
       {
-        test: /\.css$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          "css-loader",
-        ],
-      },
-      {
-        test: /\.s[ac]ss$/,
+        test: /\.s[ac]ss$/i,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -139,7 +98,7 @@ module.exports = {
       },
       {
         test: /\.js$/i,
-        exclude: "/node_modules/",
+        exclude: /node_modules/,
         use: ["babel-loader"],
       },
       {
@@ -147,7 +106,9 @@ module.exports = {
         type: "asset/resource",
         generator: {
           filename: () => {
-            return isDev ? "img/[name][ext]" : "img/[name].[contenthash][ext]";
+            return isDev
+              ? "assets/[name][ext]"
+              : "assets/[name].[contenthash][ext]";
           },
         },
       },

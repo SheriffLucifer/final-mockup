@@ -1,46 +1,66 @@
 @import "variables";
+@import "mixins/mixins";
 
 .navigation {
   background-color: $white;
   width: 320px;
   height: 100vh;
   position: absolute;
-  box-shadow: 16px 0 52px 0 rgba(14, 24, 80, 0.2),
-    -2px 0 4px 0 rgba(69, 79, 126, 0.02);
+  z-index: 2;
+  box-shadow: $box-shadow;
+  @include desktop {
+    position: relative;
+    height: auto;
+    box-shadow: none;
+    z-index: 0;
+  }
 
-  .header {
+  &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 16px;
+    @include iPad {
+      padding: 0 24px;
+    }
 
-    .menu {
+    &-menu {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-right: auto;
       width: 154px;
-      margin: 18px 24px 0;
+      margin-top: 18px;
+      @include desktop {
+        margin-top: 30px;
+      }
     }
 
-    .search {
-      margin: 18px 24px 0 0;
+    &-search {
+      margin-top: 18px;
+      padding-left: -10px;
     }
   }
 
-  .content {
+  &__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 71%;
+    @include desktop {
+      height: auto;
+      margin-bottom: 65%;
+    }
 
-    .list {
+    &-list {
       list-style-type: none;
-      color: $black;
       @extend %title;
-      padding-left: 24px;
+      padding-left: 16px;
       margin: 50px 0 0;
+      @include iPad {
+        padding-left: 24px;
+      }
 
-      &__item {
+      .list__item {
         cursor: pointer;
         &:hover {
           opacity: 0.5;
@@ -53,8 +73,12 @@
             content: "";
             border: 4px solid $blue-pointer;
             border-radius: 25%;
-            margin-left: -28px;
-            margin-right: 19px;
+            margin-left: -20px;
+            margin-right: 11px;
+            @include iPad {
+              margin-left: -28px;
+              margin-right: 19px;
+            }
           }
         }
       }
@@ -65,29 +89,30 @@
     }
   }
 
-  .footer {
+  &__footer {
     margin-left: 24px;
 
-    &__icons > a {
+    &-icons > a {
       margin-right: 16px;
     }
 
-    &__mail {
-      color: $black;
+    &-mail {
       @extend %title;
       letter-spacing: -0.2px;
       margin-bottom: 0;
     }
 
-    &__phone {
-      color: $black;
+    &-phone {
       @extend %h2;
       margin-top: 12px;
       margin-bottom: 16px;
     }
 
-    .language {
-      margin-top: 24px;
+    &-language {
+      margin-top: 8px;
+      @include desktop {
+        margin-top: 40px;
+      }
 
       &__button:first-child {
         opacity: 0.5;
@@ -107,8 +132,17 @@
   }
 }
 
+.menu__button-hidden {
+  @include desktop {
+    display: none;
+  }
+}
+
 .navigation--hidden {
   display: none;
+  @include desktop {
+    display: block;
+  }
 }
 
 .navigation--show {

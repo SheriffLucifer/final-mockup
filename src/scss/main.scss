@@ -1,3 +1,6 @@
+@import "variables";
+@import "mixins/mixins";
+
 @font-face {
   font-family: "TT Lakes";
   src: url("../../src/fonts/TTLakes-Regular.woff2") format("woff2");
@@ -28,10 +31,29 @@
 body {
   margin: 0;
   font-family: "TT Lakes", sans-serif;
-  color: #1b1c21;
-  background-color: #f8f8f8;
+  color: $black;
+  background-color: $background;
+
+  .container {
+    display: flex;
+
+    .content-column {
+      flex-direction: column;
+      width: 100%;
+      @include desktop {
+        width: 77%;
+      }
+    }
+  }
 }
 
-@import "mixins";
 @import "vendor";
 @import "navigation";
+@import "feedback";
+@import "callrequest";
+@import "content";
+@import "header";
+@import "brands";
+@import "services";
+@import "prices";
+@import "footer";

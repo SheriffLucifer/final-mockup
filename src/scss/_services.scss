@@ -1,0 +1,94 @@
+@import "variables";
+@import "mixins/mixins";
+
+.slider .swiper-second {
+  height: 210px;
+}
+
+.slider .swiper .swiper-slide__height {
+  height: 160px;
+  align-items: stretch;
+
+  .swiper-title {
+    @extend %title;
+    color: $black;
+    padding: 16px;
+    margin-top: 0;
+    margin-bottom: 48px;
+  }
+
+  .swiper__image {
+    padding: 16px;
+    margin-top: auto;
+    margin-left: auto;
+    cursor: pointer;
+  }
+}
+
+.second_wrapper {
+  display: none;
+  @include iPad {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(224px, 300px));
+    gap: 16px 24px;
+    margin-left: 24px;
+  }
+  @include laptop {
+    grid-template-columns: repeat(4, minmax(240px, 300px));
+    gap: 16px 32px;
+  }
+
+  &__slide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 160px;
+    border-radius: 6px;
+    border: 1px solid $grey-border;
+    background: $white;
+    @include laptop {
+      max-width: 240px;
+    }
+
+    .second_wrapper__title {
+      @extend %title;
+      color: $black;
+      padding: 16px;
+      margin-top: 0;
+      margin-bottom: 48px;
+    }
+
+    .second_wrapper__img {
+      margin-left: auto;
+      padding-right: 16px;
+      cursor: pointer;
+    }
+  }
+}
+
+.second_wrapper__button {
+  display: none;
+  color: $black;
+  @extend %title;
+  border: none;
+  margin-top: 24px;
+  margin-left: 20px;
+  cursor: pointer;
+  @include iPad {
+    display: block;
+  }
+}
+
+.second_btn-show::before {
+  content: "";
+  background-image: url("../assets/down.svg");
+  padding-left: 30px;
+  padding-top: 2px;
+}
+
+.second_btn-hide::before {
+  content: "";
+  background-image: url("../assets/up.svg");
+  padding-left: 30px;
+  padding-top: 2px;
+}

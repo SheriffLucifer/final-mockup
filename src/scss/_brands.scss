@@ -1,0 +1,149 @@
+@import "variables";
+@import "mixins/mixins";
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &__line {
+    background-color: $blue-strip;
+    width: 100%;
+    height: 1px;
+    border: 1px solid $blue-strip;
+    margin-top: 24px;
+    margin-bottom: 0;
+    @include iPad {
+      margin-top: 32px;
+    }
+    @include laptop {
+      margin-top: 50px;
+    }
+  }
+
+  &__title {
+    color: $grey;
+    @extend %h3;
+    background: $gradient;
+    margin: 0 0 16px 0;
+    padding: 16px;
+    @include iPad {
+      padding-left: 24px;
+      margin-bottom: 24px;
+    }
+    @include laptop {
+      padding-left: 32px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .swiper {
+    height: 120px;
+
+    &__img {
+      padding: 16px;
+      cursor: pointer;
+    }
+
+    &__img-hp {
+      padding: 10px;
+    }
+
+    &__img-apple {
+      padding: 12px;
+    }
+  }
+
+  .swiper .swiper-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 72px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    margin-left: 16px;
+  }
+
+  .swiper .swiper-slide {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 240px;
+    border-radius: 6px;
+    border: 1px solid $grey-border;
+    background: $white;
+  }
+
+  .swiper .swiper-pagination {
+    height: 10px;
+  }
+
+  .swiper .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background-color: $grey;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+}
+
+.wrapper {
+  display: none;
+  @include iPad {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(224px, 300px));
+    gap: 16px 24px;
+    margin-left: 24px;
+  }
+  @include laptop {
+    grid-template-columns: repeat(4, minmax(240px, 300px));
+    gap: 16px 32px;
+  }
+
+  &__slide {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+    border-radius: 6px;
+    border: 1px solid $grey-border;
+    background: $white;
+    @include laptop {
+      max-width: 240px;
+    }
+
+    &-img {
+      padding: 16px;
+    }
+
+    &-img-arrow {
+      cursor: pointer;
+    }
+  }
+}
+
+.slider__button {
+  display: none;
+  color: $black;
+  @extend %title;
+  border: none;
+  margin-top: 24px;
+  margin-left: 20px;
+  cursor: pointer;
+  @include iPad {
+    display: block;
+  }
+}
+
+.btn-show::before {
+  content: "";
+  background-image: url("../assets/down.svg");
+  padding-left: 30px;
+  padding-top: 2px;
+}
+
+.btn-hide::before {
+  content: "";
+  background-image: url("../assets/up.svg");
+  padding-left: 30px;
+  padding-top: 2px;
+}

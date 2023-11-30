@@ -1,0 +1,66 @@
+@import "variables";
+@import "mixins/mixins";
+
+.header {
+  @include desktop {
+    display: none;
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 16px;
+    background-color: $white;
+
+    &-divider-second {
+      border: 2px solid $grey-border;
+      height: 32px;
+      border-radius: 1px;
+      margin: 0;
+      @include iPad {
+        display: none;
+      }
+    }
+  }
+
+  &__menu-left,
+  &__menu-right {
+    display: contents;
+    @include iPad {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 8px;
+    }
+  }
+
+  &__menu-divider-first,
+  &__menu-divider-third,
+  &__menu-call,
+  &__menu-chat,
+  &__menu-profile {
+    display: none;
+    @include iPad {
+      display: block;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header__menu-left {
+    min-width: 205px;
+    align-items: center;
+  }
+
+  .header__menu-right {
+    min-width: 300px;
+  }
+
+  .header__menu-divider-first,
+  .header__menu-divider-third {
+    border: 2px solid $grey-border;
+    height: 32px;
+    border-radius: 1px;
+    margin: 0;
+  }
+}

@@ -1,0 +1,49 @@
+@import "variables";
+@import "mixins/mixins";
+
+.footer__content {
+  @extend %title-text;
+  color: $grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 57px;
+  text-align: center;
+  @include iPad {
+    flex-direction: row;
+    margin-left: 24px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  @include laptop {
+    margin-left: 32px;
+  }
+
+  &-left {
+    margin-bottom: 16px;
+    @include iPad {
+      text-align: left;
+      margin-top: 0;
+    }
+  }
+
+  &-center {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+
+  &-right {
+    margin-top: 0;
+    margin-bottom: 19px;
+    @include iPad {
+      width: 213px;
+      text-align: right;
+      margin-right: 24px;
+    }
+    @include laptop {
+      width: 330px;
+      margin-right: 32px;
+    }
+  }
+}
